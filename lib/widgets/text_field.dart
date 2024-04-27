@@ -4,14 +4,14 @@ import '../models/chat_model.dart';
 import '../providers/chats_provider.dart';
 import '../services/ai_handler.dart';
 
-class TextAndVoiceField extends ConsumerStatefulWidget {
-  const TextAndVoiceField({super.key});
+class AITextField extends ConsumerStatefulWidget {
+  const AITextField({super.key});
 
   @override
-  ConsumerState<TextAndVoiceField> createState() => _TextAndVoiceFieldState();
+  ConsumerState<AITextField> createState() => _AITextFieldState();
 }
 
-class _TextAndVoiceFieldState extends ConsumerState<TextAndVoiceField> {
+class _AITextFieldState extends ConsumerState<AITextField> {
   final _messageController = TextEditingController();
   final AIHandler _lingua = AIHandler();
   var _isReplying = false;
@@ -26,19 +26,11 @@ class _TextAndVoiceFieldState extends ConsumerState<TextAndVoiceField> {
             cursorColor: Theme.of(context).colorScheme.onPrimary,
             decoration: InputDecoration(
               filled: true,
-              fillColor: Theme.of(context).colorScheme.primary,
+              fillColor: Colors.deepPurple.withOpacity(0.1),
               hintText: 'Type a message',
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-                borderRadius: BorderRadius.circular(
-                  12,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide.none),
             ),
           ),
         ),

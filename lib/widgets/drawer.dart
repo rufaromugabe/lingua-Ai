@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/widgets.dart';
-import 'package:lingua_ai/screens/settings.dart';
+import 'package:lingua_ai/screens/Responsivescreen.dart';
+import '../providers/chats_provider.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -21,13 +23,17 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.bubble_chart_rounded),
             ),
           ),
-          ListTile(
-            title: Text('New Chat'),
-            leading: Icon(Icons.edit),
-            onTap: () {
-              // Update the state of the app
-              // Then close the drawer
-              Navigator.pop(context);
+          Consumer(
+            builder: (context, ref, child) {
+              final chatNotifier = ref.watch(chatsProvider.notifier);
+              return ListTile(
+                title: Text('New Chat'),
+                leading: Icon(Icons.edit),
+                onTap: () {
+                  chatNotifier.newChat();
+                  Navigator.pop(context);
+                },
+              );
             },
           ),
           ListTile(
@@ -36,7 +42,6 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               // Update the state of the app
               // Then close the drawer
-              Navigator.pop(context);
             },
           ),
           Spacer(),
@@ -48,7 +53,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Appsettings()),
+                MaterialPageRoute(builder: (context) => Responsettings()),
               );
             },
           ),

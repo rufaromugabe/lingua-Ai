@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/active_theme_provider.dart';
+import '../providers/chats_provider.dart';
 import 'theme_switch.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -14,7 +15,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
-          'Lingua AI',
+          'Home',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -23,11 +24,18 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Row(
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.library_add_outlined,
-                ),
+              Consumer(
+                builder: (context, ref, child) {
+                  final chatNotifier = ref.watch(chatsProvider.notifier);
+                  return IconButton(
+                    onPressed: () {
+                      chatNotifier.newChat();
+                    },
+                    icon: Icon(
+                      Icons.library_add_outlined,
+                    ),
+                  );
+                },
               ),
               const SizedBox(width: 10),
               Consumer(
