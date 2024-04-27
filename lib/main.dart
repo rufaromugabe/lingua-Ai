@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lingua_ai/screens/Responsivescreen.dart';
 import 'providers/active_theme_provider.dart';
-import 'screens/chat_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'constants/themes.dart';
